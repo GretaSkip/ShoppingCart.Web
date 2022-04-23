@@ -7,13 +7,14 @@
 <h1>Category Admin</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-area="Admin" asp-controller="Category" asp-action="CreateUpdate">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Display Order</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -23,8 +24,8 @@
             <td>@item.DisplayOrder</td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id}) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Update", "CreateUpdate", new { id=item.Id}) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })
             </td>
        </tr>
