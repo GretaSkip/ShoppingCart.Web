@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShoppingCart.Web.Models;
+using ShoppingCart.Models;
 using System.Diagnostics;
 
 namespace ShoppingCart.Web.Controllers

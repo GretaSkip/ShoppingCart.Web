@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShoppingCart.DataAccess.Data;
+using ShoppingCart.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
