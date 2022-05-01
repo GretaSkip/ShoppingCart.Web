@@ -13,8 +13,8 @@ $(document).ready(function () {
             "data": "id",
             "render": function (data) {
                 return `
-                <a href="/Admin/Product/CreateUpdate?id=${data}">Update</a>
-                <a onclick=RemoveProduct("/Admin/Product/Delete/${data}")>Delete</a>
+                <a href="/Admin/Product/CreateUpdate?id=${data}"><i class="bi bi-pencil-square"></i></a>
+                <a onclick=RemoveProduct("/Admin/Product/Delete/${data}")><i class="bi bi-trash"></i></a>
  `   }
             }
         ]
