@@ -117,7 +117,29 @@ namespace ShoppingCart.Web.Areas.Admin.Controllers
 
             }
             return RedirectToAction("Index");
-
         }
+
+        #region DeleteAPICALL
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var product = _unitofWork.Product.GetT(x => x.Id == id);
+            if (product == null)
+            {
+                return Json(new { success = false, message = "Error in Fetching Data" });
+            }
+            else
+            {
+                var oldImagePath = Path.Combine(_hostingEnvironment.WebRootPath, product.ImageUrl.TrimStart('\\')); //need to check if it works
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+                _unitofWork.Product.Delete(product);
+                _unitofWork.Save();
+                return Json(new { success = true, message = "Product Deleted" });
+            }
+        }
+        #endregion
     }
 }
