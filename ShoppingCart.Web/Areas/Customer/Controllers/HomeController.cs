@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.DataAccess.Repositories;
+using ShoppingCart.DataAccess.ViewModels;
 using ShoppingCart.Models;
 using System.Diagnostics;
 
@@ -23,6 +24,19 @@ namespace ShoppingCart.Web.Controllers
             IEnumerable<Product> products = _unitofWork.Product.GetAll(includeProperties: "Category");
             
             return View(products);
+        }
+
+        [HttpGet]
+        public IActionResult Details(int? productId)
+        {
+            Cart cart = new Cart()
+            {
+                Product = _unitofWork.Product.GetT(x => x.Id == productId,
+                includeProperties: "Category"),
+                Count = 1,
+                ProductId = (int)productId
+            };
+            return View(cart);
         }
 
         public IActionResult Privacy()
