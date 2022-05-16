@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.DataAccess.Repositories;
-using ShoppingCart.DataAccess.ViewModels;
 using ShoppingCart.Models;
 using System.Diagnostics;
 
@@ -22,7 +21,7 @@ namespace ShoppingCart.Web.Controllers
         public IActionResult Index()
         {
             IEnumerable<Product> products = _unitofWork.Product.GetAll(includeProperties: "Category");
-            
+
             return View(products);
         }
 
